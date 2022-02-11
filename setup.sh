@@ -1,15 +1,6 @@
 #!bin/bash
-
-# A script that installs postgresql on ubuntu and adds a new user.
-
-username="mob_db_user"
-Password="mob_db_pass"
-
-sudo apt update -y 
-
-sudo apt install postgresql postgresql-contrib
-
-sudo -i -u postgres <<EOF
-psql -c "CREATE USER $username WITH PASSWORD $password"
-EOF
+sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get install postgresql postgresql-contrib -y
+sudo -u postgres psal - "create database mob_db;"
+sudo -u postgres psql -c "create user mob_db_user; alter user mob_b_user with encrypted password "mob_db_password"; GRANT ALL PRIVILEGES ON DATABASE mob db TO mob_db_user;”
 
