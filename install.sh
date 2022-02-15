@@ -8,4 +8,3 @@ sudo su -c 'echo -e "#Adding environment variables to bashrc file\nexport DBNAME
 
 # To execute bashrc files so that the variables are activated in the mob_app_user's environment for the current session
 sudo su -c 'source .bashrc' - mob_app_user
-
