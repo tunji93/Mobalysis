@@ -1,4 +1,5 @@
 #!/bin/bash
 
+
 # To clone into current directory
-git clone https://github.com/aderinto-wahab/Mobalysis.git
+sudo su -c 'git clone https://github.com/aderinto-wahab/Mobalysis.git' - mob_app_user
