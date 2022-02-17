@@ -8,3 +8,12 @@ sudo su -c 'echo -e "#Adding environment variables to bashrc file\nexport DBNAME
 
 # To execute bashrc files so that the variables are activated in the mob_app_user's environment for the current session
 sudo su -c 'source .bashrc' - mob_app_user
+
+#To install python virtual environment globally so that it can be used by any user
+sudo apt-get install python3-venv -y
+
+#To setup vitual environment called  env
+sudo su -c 'python3 -m venv env' - mob_app_user
+
+#To activate the virtual environment
+sudo su -c 'source env/bin/activate' - mob_app_user
