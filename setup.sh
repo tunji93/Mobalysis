@@ -13,7 +13,7 @@ sudo apt-get install python3 -y
 sudo apt install python3-pip -y
 
 # To install django
-pip install django==3.0.0
+sudo pip install django==3.0.0
 
 #installing python virtual enviroment
 sudo apt install python3-venv -y
