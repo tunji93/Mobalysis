@@ -32,3 +32,7 @@ sudo adduser mob_app_user
 
 #Installing home directory for "mob_app_user"
 sudo mkhomedir_helper mob_app_user
+
+#Beginning of sprint 2
+#start nginx
+sudo systemctl start nginx
