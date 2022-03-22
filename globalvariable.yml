@@ -8,8 +8,8 @@
      blockinfile:
        dest: /home/mob_app_user/.bashrc
        block: |
-        DBUSER='mob_db_user'
-        DBPASS='mob_db_pass'
-        DBHOST='localhost'
-        DBPORT='5432'
+        export DBUSER='mob_db_user'
+        export DBPASS='mob_db_pass'
+        export DBHOST='localhost'
+        export DBPORT='5432'
        backup: yes
