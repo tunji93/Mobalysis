@@ -1,0 +1,26 @@
+---
+- hosts: all
+  name : Ansible role Create database and mob_db_user
+  become: true
+  become_user: root
+  vars:
+    db_user: mob_db_user
+    db_name: mobalytics
+    db_password: mob_db_password
+  tasks:
+  - name: Ensure the PostgreSQL service is running
+    service: name=postgresql state=started enabled=yes
+  - name: Create the database specified in vars
+    become: true
+    become_user: postgres
+    postgresql_db: name={{ db_name }}
+         template='template0'
+         state=present
+  - name: Ensure user has access to the new database
+    become: true
+    become_user: postgres
+    postgresql_user: db={{ db_name }}
+         name={{ db_user }}
+         password={{ db_password }}
+         priv=ALL
+         state=present
