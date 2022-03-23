@@ -1,0 +1,16 @@
+- name: ec2 launcher
+  host: localhost
+  connection: local
+
+  tasks:
+  - name: launching ec2
+    ec2:
+      instance_type: t2.micro
+      key_name: wahab-key
+      image: ami-0b0ea68c435eb488d
+      region: us-east-1
+      group: ec2-security-group
+      count: 1
+      vpc_subnet_id: 	subnet-05056bf0806bb5188
+      wait: yes
+      assign_public_ip: yes
