@@ -1,0 +1,15 @@
+---
+ - hosts: all
+   name : Create environment varibale for mob_app_user
+   become: true
+   become_user: root
+   tasks:
+   - name: Adding environment variable to a file
+     blockinfile:
+       dest: /home/mob_app_user/.bashrc
+       block: |
+        export DBUSER='mob_db_user'
+        export DBPASS='mob_db_pass'
+        export DBHOST='localhost'
+        export DBPORT='5432'
+       backup: yes

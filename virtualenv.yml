@@ -1,0 +1,15 @@
+---
+ - hosts: all
+   name : Setting up virtual environment 
+   become: true
+   become_user: root
+   tasks:
+   - name: Install virtualenv module
+     pip:
+       name: virtualenv
+       state: latest
+   - name: Manually create the initial virtualenv
+     pip:
+       name: env
+       virtualenv: /home/mob_app_user/env
+       state: latest

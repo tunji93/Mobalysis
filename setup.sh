@@ -13,11 +13,16 @@ sudo apt-get install python3 -y
 sudo apt install python3-pip -y
 
 # To install django
-pip install django==3.0.0
+sudo pip install django==3.0.0
 
 #installing python virtual enviroment
 sudo apt install python3-venv -y
 
+#installing nginx
+sudo apt-get install nginx -y
+
+#install nodejs
+sudo apt-get install -y nodejs
 
 #Creating database
 sudo -u postgres psql -c "create database mobalytics;"
@@ -32,3 +37,10 @@ sudo adduser mob_app_user
 
 #Installing home directory for "mob_app_user"
 sudo mkhomedir_helper mob_app_user
+
+#Navigate to nginx file directory
+cd /var/www/html/
+
+#Beginning of sprint 2
+#start nginx
+sudo systemctl restart nginx

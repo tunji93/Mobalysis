@@ -18,8 +18,8 @@ sudo su -c 'python3 -m venv env' - mob_app_user
 #To activate the virtual environment
 sudo su -c 'source env/bin/activate' - mob_app_user
 
-#making new migrations into database
-python3 /home/mob_app_user/Mobalysis/backend/manage.py makemigrations
+#To install the application packages in virtual environment
+sudo -u mob_app_user bash -c 'cd /home/mob_app_user/ && source /home/mob_app_user/.env/bin/activate && pip3 install -r /home/mob_app_user/Mobalysis/backend/requirements.txt'
 
 #making new migrations into database
 python3 /home/mob_app_user/Mobalysis/backend/manage.py makemigrations
