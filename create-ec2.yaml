@@ -1,16 +1,59 @@
-- name: ec2 launcher
+---
+- name: create security group, laumch ec2, register instance, and add new instance to inventory file
+  gather_facts: False
+  tags: my ec2
   host: localhost
   connection: local
 
+  vars:
+    instance_type: t2.micro
+    security_group: my_ec2_security_group
+    image: ami-0b0ea68c435eb488d
+    region: us-east-1
+    key_pair: wahab-key
+    count: 1
+
   tasks:
+  - name: create security group
+    ec2_group:
+      name: "{{security_group}}"
+      description: new security group named "{{security_group}}"
+      region: "{{region}}"
+      rules:
+        - proto: tcp
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+          
+      
+
+  
   - name: launching ec2
     ec2:
-      instance_type: t2.micro
-      key_name: wahab-key
-      image: ami-0b0ea68c435eb488d
-      region: us-east-1
-      group: ec2-security-group
-      count: 1
+      instance_type: "{{instance_type}}"
+      key_name: "{{key_pair}}"
+      image: "{{image}}"
+      region: "{{region}}"
+      group: "{{security_group}}"
+      count: "{{count}}"
       vpc_subnet_id: 	subnet-05056bf0806bb5188
       wait: yes
       assign_public_ip: yes
+    register: "my_ec2"
+
+  
+    - name: Add new instance to host group
+      add_host:
+        hostname: "{{ item.public_ip }}"
+        groupname: my_server
+      with_items: "{{ my_ec2.instances }}"
+
+
+  
